@@ -8,6 +8,14 @@
       <h5 class="card-header"><a href="{{ object.url }}">{{ object.title }}</a></h5>
       <div class="card-body">
         <p class="card-text">{{ object.description }}</p>
+          <div class="row" >
+              <div class="col-6">
+                  <p class="card-text">{{ object.city.name }} | {{ object.language.name }}</p>
+              </div>
+              <div class="col-6 text-right">
+                  <p><small>{{ object.timestamp|date:"d-m-Y" }}</small> </p>
+              </div>
+          </div>
       </div>
     </div>
     {% endfor %}
