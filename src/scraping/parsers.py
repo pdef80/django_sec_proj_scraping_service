@@ -1,11 +1,20 @@
 from bs4 import BeautifulSoup as BS
 import requests
 import codecs
+from random import randint
 
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:47.0) Gecko/20100101 Firefox/47.0',
-           'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9,*/*;q=0.8'
-           }
+__all__ = ('work', "rabota", 'dou', "djinny")
+
+
+headers = [{'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:47.0) Gecko/20100101 Firefox/47.0',
+           'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9,*/*;q=0.8'},
+           {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36",
+           'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9,*/*;q=0.8'},
+           {"User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 (.NET CLR 3.5.30729)",
+            'Accept': 'text/html, application/xhtml+xml, application/xml;q=0.9,*/*;q=0.8'}
+]
+
 
 jobs = []
 errors = []
@@ -13,7 +22,7 @@ errors = []
 def work(url):
     domain = 'https://www.work.ua'
     # url = 'https://www.work.ua/ru/jobs-kyiv-python/'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0, 2)])
     jobs = []
     errors = []
 
@@ -41,7 +50,7 @@ def work(url):
 
 def rabota(url):
     domain = 'https://rabota.ua'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0, 2)])
     jobs = []
     errors = []
     if resp.status_code == 200:
@@ -75,7 +84,7 @@ def rabota(url):
 def dou(url):
     # domain = 'https://www.work.ua'
     # url = 'https://www.work.ua/ru/jobs-kyiv-python/'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0, 2)])
     jobs = []
     errors = []
 
@@ -106,7 +115,7 @@ def dou(url):
 def djinny(url):
     domain = 'https://djinni.co'
     # url = 'https://www.work.ua/ru/jobs-kyiv-python/'
-    resp = requests.get(url, headers=headers)
+    resp = requests.get(url, headers=headers[randint(0, 2)])
     jobs = []
     errors = []
 
@@ -137,6 +146,6 @@ def djinny(url):
 if __name__ == '__main__':
     url = 'https://djinni.co/jobs/keyword-python/kyiv/'
     jobs, errors = djinny(url)
-    h = codecs.open('work.txt', 'w', 'utf-8')
+    h = codecs.open('../work.txt', 'w', 'utf-8')
     h.write(str(jobs))
     h.close()
