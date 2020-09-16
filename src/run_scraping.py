@@ -12,7 +12,7 @@ import django
 django.setup()
 
 from scraping.parsers import *
-from scraping.models import Vacancy, City, Language
+from scraping.models import Vacancy, City, Language, Error
 
 
 parsers = (
@@ -31,16 +31,17 @@ for func, url in parsers:
     jobs += j
     errors += e
 
-count = 0
+
 for job in jobs:
     v = Vacancy(**job, city=city, language=language)
     try:
         v.save()
     except DatabaseError:
         pass
-    count += 1
 
-print(count)
+if errors:
+    er = Error(data= errors).save()
+
 
 # h = codecs.open('work.txt', 'w', 'utf-8')
 # h.write(str(jobs))
