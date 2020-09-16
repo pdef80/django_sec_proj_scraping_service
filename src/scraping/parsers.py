@@ -39,7 +39,7 @@ def work(url):
                 logo = div.find('img')
                 if logo:
                     company = logo['alt']
-                jobs.append({'title': title.text, 'url': url, 'href': domain + href, 'description': content, 'company': company})
+                jobs.append({'title': title.text, 'url': domain + href, 'description': content, 'company': company})
         else:
             errors.append({'url': url, 'title': 'Div does not exists'})
     else:
@@ -70,7 +70,7 @@ def rabota(url):
                         p = div.find('p', attrs={'class': 'company-name'})
                         if p:
                             company = p.a.text
-                    jobs.append({'title': title.text, 'url': url, 'href': domain + href, 'description': content, 'company': company})
+                    jobs.append({'title': title.text, 'url': domain + href, 'description': content, 'company': company})
             else:
                 errors.append({'url': url, 'title': 'Table does not exists'})
         else:
@@ -103,7 +103,7 @@ def dou(url):
                     a = title.find('a', attrs={'class': 'company'})
                     if a:
                         company = a.text
-                    jobs.append({'title': title.text, 'url': url, 'href': href, 'description': content, 'company': company})
+                    jobs.append({'title': title.text, 'url': href, 'description': content, 'company': company})
         else:
             errors.append({'url': url, 'title': 'Div does not exists'})
     else:
@@ -134,7 +134,7 @@ def djinny(url):
                     comp = li.find('div', attrs={'class': 'list-jobs__details__info'})
                     if comp:
                         company = comp.text
-                    jobs.append({'title': title.text, 'url': url, 'href': domain + href, 'description': content, 'company': company})
+                    jobs.append({'title': title.text, 'url': domain + href, 'description': content, 'company': company})
         else:
             errors.append({'url': url, 'title': 'Div does not exists'})
     else:
