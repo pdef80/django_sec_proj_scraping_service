@@ -1,5 +1,18 @@
-from scraping.parsers import *
 import codecs
+import os, sys
+
+
+proj = os.path.dirname(os.path.abspath('manage.py'))
+sys.path.append(proj)
+os.environ["DJANGO_SETTINGS_MODULE"] = "scraping_service.settings"
+
+
+import django
+django.setup()
+
+
+from scraping.parsers import *
+from scraping.models import Vacancy, City, Language
 
 
 parsers = (
@@ -9,7 +22,7 @@ parsers = (
             (djinny, 'https://djinni.co/jobs/keyword-python/kyiv/')
 )
 
-
+city = City.objects.filter(slug='kiev')
 jobs, errors = [], []
 for func, url in parsers:
     j, e = func(url)
