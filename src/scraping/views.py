@@ -6,6 +6,11 @@ from .models import Vacancy
 
 def home_view(request):
     form = FindForm()
+    return render(request, 'scraping/home.html', {'form': form})
+
+
+def list_view(request):
+    form = FindForm()
     city = request.GET.get('city')
     language = request.GET.get('language')
     qs = []
@@ -17,4 +22,4 @@ def home_view(request):
             _filter['language__slug'] = language.lower()
 
         qs = Vacancy.objects.filter(**_filter)
-    return render(request, 'scraping/home.html', {'object_list': qs, 'form': form})
+    return render(request, 'scraping/list.html', {'object_list': qs, 'form': form})
