@@ -24,6 +24,7 @@
           <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Выйти</a>
           {% else %}
           <a class="nav-item nav-link" href="{% url 'accounts:login' %}">Войти</a>
+          <a class="nav-item nav-link" href="{% url 'accounts:register' %}">Регистрация</a>
           {% endif %}
           <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </div>
